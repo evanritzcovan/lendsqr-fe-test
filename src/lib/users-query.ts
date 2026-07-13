@@ -5,7 +5,11 @@ import type {
   UsersSummary,
   UserStatus,
 } from '@/types/user';
-import { DEFAULT_PAGE_SIZE, USER_STATUSES } from '@/lib/constants';
+import {
+  DEFAULT_PAGE_SIZE,
+  MAX_PAGE_SIZE,
+  USER_STATUSES,
+} from '@/lib/constants';
 
 export interface UsersQueryParams {
   page?: number;
@@ -20,8 +24,6 @@ export interface UsersQueryParams {
   dateTo?: string;
   sort?: string;
 }
-
-const MAX_LIMIT = 100;
 
 function toListUser(user: UserDetail): User {
   const { id, organization, username, email, phoneNumber, dateJoined, status } = user;
@@ -69,7 +71,10 @@ function matchesPartial(value: string, filter: string | undefined): boolean {
   return value.toLowerCase().includes(query);
 }
 
-function matchesStatus(user: UserDetail, statusFilter: string | undefined): boolean {
+function matchesStatus(
+  user: Pick<User, 'status'>,
+  statusFilter: string | undefined,
+): boolean {
   if (!statusFilter?.trim()) {
     return true;
   }
@@ -151,22 +156,73 @@ export function filterUsers(
     .sort((a, b) => compareUsers(a, b, params.sort));
 }
 
-export function queryUsers(
-  users: UserDetail[],
-  params: UsersQueryParams,
-): PaginatedUsersResponse {
-  const page = parsePositiveInt(
+function resolvePage(params: UsersQueryParams): number {
+  return parsePositiveInt(
     params.page !== undefined ? String(params.page) : undefined,
     1,
   );
-  const limit = Math.min(
+}
+
+function resolveLimit(
+  params: UsersQueryParams,
+  maxLimit = MAX_PAGE_SIZE,
+): number {
+  return Math.min(
     parsePositiveInt(
       params.limit !== undefined ? String(params.limit) : undefined,
       DEFAULT_PAGE_SIZE,
     ),
-    MAX_LIMIT,
+    maxLimit,
   );
+}
 
+export function filterUsersByStatus<T extends Pick<User, 'status'>>(
+  users: T[],
+  status?: string,
+): T[] {
+  if (!status?.trim()) {
+    return users;
+  }
+
+  return users.filter((user) => matchesStatus(user, status));
+}
+
+export function paginateUserList(
+  users: User[],
+  params: Pick<UsersQueryParams, 'page' | 'limit'>,
+): PaginatedUsersResponse {
+  const page = resolvePage(params);
+  const limit = resolveLimit(params);
+  const total = users.length;
+  const totalPages = Math.max(1, Math.ceil(total / limit));
+  const safePage = Math.min(page, totalPages);
+  const start = (safePage - 1) * limit;
+  const data = users.slice(start, start + limit);
+
+  return {
+    data,
+    total,
+    page: safePage,
+    limit,
+    totalPages,
+  };
+}
+
+export function queryUsersByEffectiveStatus(
+  users: User[],
+  params: UsersQueryParams,
+): PaginatedUsersResponse {
+  const filtered = filterUsersByStatus(users, params.status);
+  return paginateUserList(filtered, params);
+}
+
+export function queryUsers(
+  users: UserDetail[],
+  params: UsersQueryParams,
+  options?: { maxLimit?: number },
+): PaginatedUsersResponse {
+  const page = resolvePage(params);
+  const limit = resolveLimit(params, options?.maxLimit ?? MAX_PAGE_SIZE);
   const filtered = filterUsers(users, params);
   const total = filtered.length;
   const totalPages = Math.max(1, Math.ceil(total / limit));
@@ -181,6 +237,10 @@ export function queryUsers(
     limit,
     totalPages,
   };
+}
+
+export function usesClientStatusFilter(params: UsersQueryParams): boolean {
+  return Boolean(params.status?.trim());
 }
 
 export function getUsersSummary(users: UserDetail[]): UsersSummary {

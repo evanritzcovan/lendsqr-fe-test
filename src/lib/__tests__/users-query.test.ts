@@ -2,9 +2,13 @@ import { describe, expect, it } from 'vitest';
 import type { UserDetail } from '@/types/user';
 import {
   filterUsers,
+  filterUsersByStatus,
   getUserById,
   getUsersSummary,
+  paginateUserList,
   queryUsers,
+  queryUsersByEffectiveStatus,
+  usesClientStatusFilter,
 } from '@/lib/users-query';
 
 const mockUsers: UserDetail[] = [
@@ -194,7 +198,7 @@ describe('users-query', () => {
     expect(result.totalPages).toBe(1);
   });
 
-  it('caps limit at 100', () => {
+  it('caps limit at 100 for normal pagination', () => {
     const largeSet = Array.from({ length: 150 }, (_, index) => ({
       ...mockUsers[0],
       id: String(index + 1),
@@ -204,6 +208,83 @@ describe('users-query', () => {
 
     expect(result.limit).toBe(100);
     expect(result.data).toHaveLength(100);
+  });
+
+  it('allows bulk fetch limit for status override queries', () => {
+    const largeSet = Array.from({ length: 250 }, (_, index) => ({
+      ...mockUsers[0],
+      id: String(index + 1),
+    }));
+
+    const result = queryUsers(largeSet, { limit: 500 }, { maxLimit: 500 });
+
+    expect(result.limit).toBe(500);
+    expect(result.data).toHaveLength(250);
+  });
+
+  it('filters and paginates by effective status after overrides', () => {
+    const users = [
+      { ...mockUsers[0], status: 'Blacklisted' as const },
+      mockUsers[1],
+      mockUsers[2],
+    ];
+
+    const result = queryUsersByEffectiveStatus(users, {
+      status: 'Blacklisted',
+      page: 1,
+      limit: 10,
+    });
+
+    expect(result.total).toBe(2);
+    expect(result.data.map((user) => user.id).sort()).toEqual(['1', '3']);
+  });
+
+  it('excludes overridden active users from active status filter', () => {
+    const users = [
+      { ...mockUsers[0], status: 'Blacklisted' as const },
+      mockUsers[1],
+    ];
+
+    const result = queryUsersByEffectiveStatus(users, { status: 'Active' });
+
+    expect(result.total).toBe(0);
+    expect(result.data).toEqual([]);
+  });
+
+  it('detects when client-side status filtering is required', () => {
+    expect(usesClientStatusFilter({ status: 'Active' })).toBe(true);
+    expect(usesClientStatusFilter({ status: ' Active ' })).toBe(true);
+    expect(usesClientStatusFilter({})).toBe(false);
+    expect(usesClientStatusFilter({ status: '' })).toBe(false);
+  });
+
+  it('filters users by status without pagination', () => {
+    const result = filterUsersByStatus(mockUsers, 'Active,Pending');
+
+    expect(result).toHaveLength(2);
+    expect(result.map((user) => user.status).sort()).toEqual([
+      'Active',
+      'Pending',
+    ]);
+  });
+
+  it('paginates a user list', () => {
+    const users = mockUsers.map((user) => ({
+      id: user.id,
+      organization: user.organization,
+      username: user.username,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      dateJoined: user.dateJoined,
+      status: user.status,
+    }));
+
+    const result = paginateUserList(users, { page: 2, limit: 2 });
+
+    expect(result.total).toBe(3);
+    expect(result.page).toBe(2);
+    expect(result.data).toHaveLength(1);
+    expect(result.data[0]?.username).toBe('tomiwa');
   });
 
   it('computes summary stats', () => {
