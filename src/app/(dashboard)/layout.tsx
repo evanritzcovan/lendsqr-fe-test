@@ -1,4 +1,5 @@
-import styles from './layout.module.scss';
+import { AuthGuard } from '@/components/layout/AuthGuard';
+import { DashboardShell } from '@/components/layout/DashboardShell';
 
 export default function DashboardLayout({
   children,
@@ -6,10 +7,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.shell}>
-      <main className={styles.main}>
-        <div className={styles.content}>{children}</div>
-      </main>
-    </div>
+    <AuthGuard>
+      <DashboardShell>{children}</DashboardShell>
+    </AuthGuard>
   );
 }

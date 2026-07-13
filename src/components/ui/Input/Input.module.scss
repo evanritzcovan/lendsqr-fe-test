@@ -1,0 +1,38 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+}
+
+.control {
+  position: relative;
+}
+
+.input {
+  @include input-base;
+
+  &.hasError {
+    border-color: $color-status-blacklisted-text;
+  }
+}
+
+.trailing {
+  position: absolute;
+  top: 50%;
+  right: $space-md;
+  transform: translateY(-50%);
+}
+
+.error {
+  font-size: $font-size-xs;
+  color: $color-status-blacklisted-text;
+}

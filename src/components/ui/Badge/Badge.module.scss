@@ -1,0 +1,33 @@
+@use '../../../styles/variables' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  padding: $space-xs $space-md;
+  border-radius: $radius-pill;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  text-transform: capitalize;
+}
+
+.active {
+  background: $color-status-active-bg;
+  color: $color-status-active-text;
+}
+
+.inactive {
+  background: $color-status-inactive-bg;
+  color: $color-status-inactive-text;
+}
+
+.pending {
+  background: $color-status-pending-bg;
+  color: $color-status-pending-text;
+}
+
+.blacklisted {
+  background: $color-status-blacklisted-bg;
+  color: $color-status-blacklisted-text;
+}

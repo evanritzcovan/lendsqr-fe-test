@@ -1,0 +1,31 @@
+@use '../../../../styles/variables' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+}
+
+.title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-navy;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+}
+
+.subtitle {
+  color: $color-text-secondary;
+}

@@ -7,7 +7,7 @@ import {
   useMemo,
   useSyncExternalStore,
 } from 'react';
-import { AUTH_SESSION_KEY } from '@/lib/constants';
+import { AUTH_SESSION_KEY, TEST_CREDENTIALS } from '@/lib/constants';
 
 const AUTH_CHANGE_EVENT = 'lendsqr-auth-change';
 
@@ -49,10 +49,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 
   const login = useCallback((email: string, password: string) => {
-    // Validation and credential check implemented in Phase 3
-    void email;
-    void password;
-    return false;
+    const isValid =
+      email === TEST_CREDENTIALS.email &&
+      password === TEST_CREDENTIALS.password;
+
+    if (isValid) {
+      setAuthSession(true);
+    }
+
+    return isValid;
   }, []);
 
   const logout = useCallback(() => {

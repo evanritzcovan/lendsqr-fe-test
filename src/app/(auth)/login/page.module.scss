@@ -2,28 +2,69 @@
 @use '../../../styles/mixins' as *;
 
 .page {
+  display: grid;
   min-height: 100vh;
-  @include flex-center;
+  grid-template-columns: 1fr 1fr;
+  background: $color-white;
+
+  @include respond-below(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brandPanel {
+  display: flex;
+  flex-direction: column;
+  padding: $space-2xl $space-3xl;
   background: $color-background;
-}
 
-.placeholder {
-  text-align: center;
-  padding: $space-2xl;
-  @include card;
-  max-width: 480px;
-}
-
-.title {
-  font-size: $font-size-xl;
-  margin-bottom: $space-sm;
-}
-
-.subtitle {
-  color: $color-text-secondary;
-  margin-bottom: $space-lg;
+  @include respond-below(lg) {
+    display: none;
+  }
 }
 
 .logo {
-  margin: 0 auto $space-lg;
+  margin-bottom: $space-3xl;
+}
+
+.illustrationWrap {
+  flex: 1;
+  @include flex-center;
+}
+
+.illustration {
+  width: min(100%, 520px);
+  height: auto;
+}
+
+.formPanel {
+  @include flex-center;
+  padding: $space-xl;
+}
+
+.formCard {
+  width: min(100%, 420px);
+}
+
+.title {
+  margin-bottom: $space-sm;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-navy;
+}
+
+.subtitle {
+  margin-bottom: $space-2xl;
+  color: $color-text-secondary;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.error {
+  font-size: $font-size-sm;
+  color: $color-status-blacklisted-text;
 }

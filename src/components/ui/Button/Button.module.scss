@@ -1,0 +1,92 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.button {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    opacity $transition-fast;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.md {
+  min-height: 48px;
+  padding: $space-md $space-lg;
+  font-size: $font-size-sm;
+}
+
+.lg {
+  min-height: 56px;
+  padding: $space-md $space-xl;
+  font-size: $font-size-sm;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.primary {
+  background: $color-teal;
+  color: $color-white;
+  border: 1px solid $color-teal;
+
+  &:hover:not(:disabled) {
+    background: $color-teal-dark;
+    border-color: $color-teal-dark;
+  }
+}
+
+.outline {
+  background: transparent;
+  color: $color-text-secondary;
+  border: 1px solid $color-border;
+
+  &:hover:not(:disabled) {
+    border-color: $color-text-secondary;
+  }
+}
+
+.outline-teal {
+  background: transparent;
+  color: $color-teal;
+  border: 1px solid $color-teal;
+
+  &:hover:not(:disabled) {
+    background: rgba($color-teal, 0.06);
+  }
+}
+
+.outline-danger {
+  background: transparent;
+  color: $color-status-blacklisted-text;
+  border: 1px solid $color-status-blacklisted-text;
+
+  &:hover:not(:disabled) {
+    background: $color-status-blacklisted-bg;
+  }
+}
+
+.loading {
+  position: relative;
+}
+
+.loadingText {
+  opacity: 0.85;
+}

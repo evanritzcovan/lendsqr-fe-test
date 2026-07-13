@@ -1,0 +1,20 @@
+@use '../../../styles/variables' as *;
+
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: $color-background;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.content {
+  padding: $space-lg $space-xl $space-2xl;
+
+  @media (max-width: ($breakpoint-lg - 1px)) {
+    padding: $space-md;
+  }
+}

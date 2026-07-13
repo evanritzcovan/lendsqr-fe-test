@@ -1,0 +1,160 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: $z-navbar;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: $space-md;
+  min-height: $navbar-height;
+  padding: $space-lg $space-xl;
+  background: $color-surface;
+  border-bottom: 1px solid $color-border-light;
+
+  @include respond-below(lg) {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'left actions'
+      'search search';
+    padding: $space-md;
+    min-height: auto;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+
+  @include respond-below(lg) {
+    grid-area: left;
+  }
+}
+
+.menuButton {
+  @include button-reset;
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  color: $color-navy;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.mobileLogo {
+  display: inline-flex;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.searchForm {
+  display: flex;
+  align-items: stretch;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+
+  @include respond-below(lg) {
+    grid-area: search;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  padding: $space-md $space-lg;
+  border: 1px solid $color-border;
+  border-right: none;
+  border-radius: $radius-sm 0 0 $radius-sm;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  background: $color-white;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.searchButton {
+  @include button-reset;
+  @include flex-center;
+  width: 56px;
+  background: $color-teal;
+  color: $color-white;
+  border-radius: 0 $radius-sm $radius-sm 0;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+
+  @include respond-below(lg) {
+    grid-area: actions;
+    gap: $space-md;
+  }
+}
+
+.docsLink {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-navy;
+  }
+}
+
+.iconButton,
+.profile {
+  @include button-reset;
+  @include flex-center;
+  color: $color-text-secondary;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.profile {
+  gap: $space-sm;
+}
+
+.profileName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+
+  @include respond-below(md) {
+    display: none;
+  }
+}
+
+.chevron {
+  @include flex-center;
+  color: $color-text-muted;
+}
