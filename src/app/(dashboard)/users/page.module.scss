@@ -1,39 +1,13 @@
 @use '../../../styles/variables' as *;
-@use '../../../styles/mixins' as *;
 
 .page {
   display: flex;
   flex-direction: column;
-  gap: $space-lg;
+  gap: $space-xl;
 }
 
 .title {
   font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
   color: $color-navy;
-}
-
-.subtitle {
-  color: $color-text-secondary;
-}
-
-.preview {
-  @include card;
-  padding: $space-lg;
-}
-
-.previewLabel {
-  display: block;
-  margin-bottom: $space-md;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-medium;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $color-text-muted;
-}
-
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-sm;
 }

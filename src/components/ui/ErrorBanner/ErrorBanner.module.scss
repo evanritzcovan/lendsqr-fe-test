@@ -1,0 +1,19 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.banner {
+  @include card;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: $space-lg;
+  border: 1px solid $color-status-blacklisted-bg;
+  background: $color-status-blacklisted-bg;
+}
+
+.message {
+  color: $color-status-blacklisted-text;
+  font-size: $font-size-sm;
+}
