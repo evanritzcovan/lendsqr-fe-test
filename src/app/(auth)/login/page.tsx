@@ -123,6 +123,7 @@ export default function LoginPage() {
                 value={email}
                 error={fieldErrors.email}
                 onChange={(event) => handleEmailChange(event.target.value)}
+                suppressHydrationWarning
               />
 
               <div className={styles.passwordSection}>
@@ -131,6 +132,7 @@ export default function LoginPage() {
                   value={password}
                   error={fieldErrors.password}
                   onChange={handlePasswordChange}
+                  suppressHydrationWarning
                 />
                 <button
                   type="button"

@@ -14,6 +14,7 @@ interface PasswordInputProps {
   value: string;
   error?: string;
   onChange: (value: string) => void;
+  suppressHydrationWarning?: boolean;
 }
 
 export function PasswordInput({
@@ -26,6 +27,7 @@ export function PasswordInput({
   value,
   error,
   onChange,
+  suppressHydrationWarning = false,
 }: PasswordInputProps) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -42,6 +44,7 @@ export function PasswordInput({
       error={error}
       onChange={(event) => onChange(event.target.value)}
       className={styles.input}
+      suppressHydrationWarning={suppressHydrationWarning}
       trailing={
         <button
           type="button"
