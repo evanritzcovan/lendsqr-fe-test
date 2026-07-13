@@ -81,6 +81,7 @@ export function RowActionsMenu({
       user.id,
       getStatusForAction(actions.statusAction),
       user.status,
+      `${getUserActionLabel(actions.statusAction)} applied`,
     );
     onStatusChange();
     onClose();
@@ -91,6 +92,7 @@ export function RowActionsMenu({
       user.id,
       getStatusForAction(actions.listAction),
       user.status,
+      `${getUserActionLabel(actions.listAction)} applied`,
     );
     onStatusChange();
     onClose();

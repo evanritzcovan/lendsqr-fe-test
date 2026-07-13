@@ -74,13 +74,23 @@ export function UserDetailsView({ userId }: UserDetailsViewProps) {
 
   const handleListAction = () => {
     const status = getStatusForAction(actions.listAction);
-    setUserStatusOverride(user.id, status, user.status);
+    setUserStatusOverride(
+      user.id,
+      status,
+      user.status,
+      `${getUserActionLabel(actions.listAction)} applied`,
+    );
     updateUser({ ...user, status });
   };
 
   const handleStatusAction = () => {
     const status = getStatusForAction(actions.statusAction);
-    setUserStatusOverride(user.id, status, user.status);
+    setUserStatusOverride(
+      user.id,
+      status,
+      user.status,
+      `${getUserActionLabel(actions.statusAction)} applied`,
+    );
     updateUser({ ...user, status });
   };
 

@@ -28,9 +28,11 @@ function parseOverrides(raw: string): StatusOverrides {
 
 export const STATUS_CHANGED_EVENT = 'lendsqr_status_changed';
 
-function dispatchStatusChanged() {
+function dispatchStatusChanged(message = 'User status updated') {
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new Event(STATUS_CHANGED_EVENT));
+    window.dispatchEvent(
+      new CustomEvent(STATUS_CHANGED_EVENT, { detail: { message } }),
+    );
   }
 }
 
@@ -86,6 +88,7 @@ export function setUserStatusOverride(
   id: string,
   status: UserStatus,
   currentStatus: UserStatus,
+  message = 'User status updated',
 ) {
   const overrides = readOverrides();
   const existing = overrides[id];
@@ -101,7 +104,7 @@ export function setUserStatusOverride(
     saveUserDetail({ ...cached, status });
   }
 
-  dispatchStatusChanged();
+  dispatchStatusChanged(message);
 }
 
 export function applySummaryOverrides(summary: UsersSummary): UsersSummary {

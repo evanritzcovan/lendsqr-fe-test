@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Sidebar } from '@/components/layout/Sidebar';
+import { StatusAnnouncer } from '@/components/ui/StatusAnnouncer';
 import styles from './DashboardShell.module.scss';
 
 interface DashboardShellProps {
@@ -14,6 +15,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
 
   return (
     <div className={styles.shell}>
+      <StatusAnnouncer />
       <Sidebar
         isOpen={isMobileNavOpen}
         onClose={() => setIsMobileNavOpen(false)}
