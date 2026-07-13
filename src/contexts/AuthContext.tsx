@@ -7,7 +7,8 @@ import {
   useMemo,
   useSyncExternalStore,
 } from 'react';
-import { AUTH_SESSION_KEY, TEST_CREDENTIALS } from '@/lib/constants';
+import { AUTH_SESSION_KEY } from '@/lib/constants';
+import { authenticateUser } from '@/lib/auth';
 
 const AUTH_CHANGE_EVENT = 'lendsqr-auth-change';
 
@@ -49,9 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 
   const login = useCallback((email: string, password: string) => {
-    const isValid =
-      email === TEST_CREDENTIALS.email &&
-      password === TEST_CREDENTIALS.password;
+    const isValid = authenticateUser(email, password);
 
     if (isValid) {
       setAuthSession(true);

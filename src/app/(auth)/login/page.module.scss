@@ -43,7 +43,16 @@
 }
 
 .formCard {
-  width: min(100%, 420px);
+  width: min(100%, 447px);
+}
+
+.mobileLogo {
+  display: none;
+  margin-bottom: $space-2xl;
+
+  @include respond-below(lg) {
+    display: block;
+  }
 }
 
 .title {
@@ -64,7 +73,39 @@
   gap: $space-lg;
 }
 
-.error {
+.passwordSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.forgotPassword {
+  @include button-reset;
+  align-self: flex-start;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-teal;
+
+  &:hover {
+    color: $color-teal-dark;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.formError,
+.infoMessage {
   font-size: $font-size-sm;
+}
+
+.formError {
   color: $color-status-blacklisted-text;
+}
+
+.infoMessage {
+  color: $color-text-secondary;
 }
