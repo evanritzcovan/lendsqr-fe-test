@@ -1,0 +1,48 @@
+@use 'variables' as *;
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  color: $color-text-primary;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+h1 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+}
+
+h2 {
+  font-size: $font-size-xl;
+}
+
+h3 {
+  font-size: $font-size-lg;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: $color-teal;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-teal-dark;
+  }
+}
