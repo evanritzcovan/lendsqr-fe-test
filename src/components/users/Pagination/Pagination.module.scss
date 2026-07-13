@@ -1,0 +1,70 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+  padding: $space-lg;
+  border-top: 1px solid $color-border-light;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.select {
+  padding: $space-xs $space-sm;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  background: $color-white;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.arrow,
+.pageButton {
+  @include button-reset;
+  @include flex-center;
+  min-width: 32px;
+  height: 32px;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+
+  &:hover:not(:disabled) {
+    background: rgba($color-navy, 0.05);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.activePage {
+  background: rgba($color-navy, 0.08);
+  color: $color-navy;
+  font-weight: $font-weight-semibold;
+}
+
+.ellipsis {
+  padding: 0 $space-xs;
+  color: $color-text-muted;
+}

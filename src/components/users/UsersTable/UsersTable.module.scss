@@ -1,0 +1,243 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.tableSection {
+  @include card;
+  position: relative;
+  overflow: visible;
+}
+
+.filterPanel {
+  display: flex;
+  justify-content: flex-end;
+  padding: $space-md $space-lg 0;
+
+  @include respond-below(lg) {
+    position: absolute;
+    top: $space-md;
+    right: $space-lg;
+    z-index: $z-dropdown;
+    padding: 0;
+  }
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: $space-md $space-lg 0;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.filterButton {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+
+  svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    max-width: none;
+  }
+}
+
+.desktopTableWrap {
+  display: none;
+  overflow-x: auto;
+
+  @include respond-to(lg) {
+    display: block;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1040px;
+  table-layout: auto;
+}
+
+.table th,
+.table td {
+  padding: $space-lg;
+  border-bottom: 1px solid $color-border-light;
+  font-size: $font-size-sm;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  background: rgba($color-background, 0.6);
+  white-space: nowrap;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  min-width: 150px;
+}
+
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  min-width: 145px;
+}
+
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  min-width: 155px;
+}
+
+.columnHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  white-space: nowrap;
+}
+
+.headerLabel {
+  flex-shrink: 0;
+}
+
+.headerFilter {
+  @include button-reset;
+  @include flex-center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  color: $color-text-muted;
+
+  svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    max-width: none;
+  }
+
+  &:hover {
+    color: $color-navy;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.emailLink {
+  color: $color-navy;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: $color-teal-dark;
+  }
+}
+
+.actionsCell {
+  position: relative;
+  width: 48px;
+  text-align: right;
+}
+
+.menuButton {
+  @include button-reset;
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+  color: $color-text-secondary;
+
+  &:hover {
+    color: $color-navy;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.emptyState {
+  padding: $space-3xl $space-lg;
+  text-align: center;
+  color: $color-text-secondary;
+}
+
+.clearFilters {
+  @include button-reset;
+  margin-top: $space-md;
+  color: $color-teal;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    color: $color-teal-dark;
+  }
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  padding: $space-md;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.mobileCard {
+  padding: $space-lg;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-md;
+  background: $color-white;
+}
+
+.mobileHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-md;
+  margin-bottom: $space-md;
+}
+
+.mobileName {
+  font-weight: $font-weight-semibold;
+  color: $color-navy;
+}
+
+.mobileOrg {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.mobileDetails {
+  display: grid;
+  gap: $space-sm;
+
+  p {
+    display: grid;
+    gap: $space-xs;
+    font-size: $font-size-sm;
+    color: $color-text-primary;
+  }
+
+  span {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+  }
+}

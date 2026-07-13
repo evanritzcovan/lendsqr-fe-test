@@ -379,3 +379,111 @@ export function IconServiceAccount(props: IconProps) {
 export function IconLoanRequest(props: IconProps) {
   return <IconFile {...props} />;
 }
+
+export function IconFilter(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <path d="M4 5H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M6 10H14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M8 15H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconMoreVertical(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <circle cx="10" cy="5" r="1.25" fill="currentColor" />
+      <circle cx="10" cy="10" r="1.25" fill="currentColor" />
+      <circle cx="10" cy="15" r="1.25" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function IconEye(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <path
+        d="M3.5 10C5.2 6.5 7.4 4.5 10 4.5C12.6 4.5 14.8 6.5 16.5 10C14.8 13.5 12.6 15.5 10 15.5C7.4 15.5 5.2 13.5 3.5 10Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <circle cx="10" cy="10" r="2" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+export function IconUserBlock(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <circle cx="8" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M3.5 15C3.5 13.2 5.2 12 8 12C9.1 12 10.1 12.3 11 12.8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 12L17 15M17 12L14 15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconUserActivate(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <circle cx="8" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M3.5 15C3.5 13.2 5.2 12 8 12C10.7 12 12.5 13.5 12.5 15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14.5 10.5L16 12L18.5 9"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconUserDeactivate(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <circle cx="8" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M3.5 15C3.5 13.2 5.2 12 8 12C10.7 12 12.5 13.5 12.5 15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 8H18"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconChevronLeft(props: IconProps) {
+  return (
+    <svg {...defaults} {...props}>
+      <path
+        d="M12.5 5L7.5 10L12.5 15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

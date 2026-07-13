@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.popover {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: min(320px, 80vw);
+  padding: $space-lg;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-md;
+  background: $color-white;
+  box-shadow: $shadow-dropdown;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+}
+
+.select {
+  @include input-base;
+}
+
+.actions {
+  display: flex;
+  gap: $space-md;
+  margin-top: $space-sm;
+
+  button {
+    flex: 1;
+  }
+}

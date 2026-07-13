@@ -19,3 +19,15 @@ export const USER_STATUSES = [
   'Pending',
   'Blacklisted',
 ] as const;
+
+export const ORGANIZATIONS = [
+  'Lendsqr',
+  'Irorun',
+  'Lendstar',
+  'Aggressive',
+  'Adedeji',
+  'Flutterwave',
+  'Paystack',
+] as const;
+
+export const STATUS_OVERRIDES_STORAGE_KEY = 'lendsqr_status_overrides';
