@@ -47,8 +47,8 @@ export const SIDEBAR_TOP_ITEMS: NavItem[] = [
   },
   {
     label: 'Dashboard',
-    href: '/dashboard',
     icon: IconHome,
+    disabled: true,
   },
 ];
 
