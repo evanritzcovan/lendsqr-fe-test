@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { IconChevronDown, IconClose } from '@/components/icons/NavIcons';
 import { useAuth } from '@/contexts/AuthContext';
+import { notifyUnavailableFeature } from '@/lib/unavailable-feature';
 import {
   APP_VERSION,
   SIDEBAR_FOOTER_ITEMS,
@@ -65,6 +66,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     }
 
     if (item.disabled) {
+      notifyUnavailableFeature();
+      onClose();
       return;
     }
 
@@ -116,8 +119,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         type="button"
         className={className}
         onClick={() => handleItemClick(item)}
-        disabled={item.disabled && item.label !== 'Logout'}
-        aria-disabled={item.disabled || undefined}
       >
         {content}
       </button>

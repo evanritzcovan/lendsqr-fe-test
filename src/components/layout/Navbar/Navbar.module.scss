@@ -119,19 +119,23 @@
 }
 
 .docsLink {
+  @include button-reset;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   color: $color-text-secondary;
   text-decoration: none;
 
-  &[aria-disabled='true'] {
-    opacity: 0.6;
-    cursor: default;
-  }
-
-  &:hover:not([aria-disabled='true']) {
+  &:hover {
     color: $color-navy;
   }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.unavailable {
+  opacity: 0.75;
 }
 
 .iconButton,

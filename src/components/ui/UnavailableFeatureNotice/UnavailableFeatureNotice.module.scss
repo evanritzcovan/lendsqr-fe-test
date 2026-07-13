@@ -1,0 +1,24 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.notice {
+  position: fixed;
+  right: $space-lg;
+  bottom: $space-lg;
+  left: $space-lg;
+  z-index: $z-dropdown;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: $space-md $space-lg;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-sm;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  background: $color-surface;
+  box-shadow: 0 8px 24px rgba($color-navy, 0.12);
+
+  @include respond-to(md) {
+    left: auto;
+    margin: 0;
+  }
+}

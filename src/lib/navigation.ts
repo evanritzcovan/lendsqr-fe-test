@@ -98,6 +98,6 @@ export const SIDEBAR_FOOTER_ITEMS: NavItem[] = [
 export const APP_VERSION = 'v1.2.0';
 
 export const NAVBAR_USER = {
-  name: 'Adedeji',
-  avatarAlt: 'Adedeji profile photo',
+  name: 'Evan Ritzcovan',
+  avatarAlt: 'Evan Ritzcovan profile photo',
 };

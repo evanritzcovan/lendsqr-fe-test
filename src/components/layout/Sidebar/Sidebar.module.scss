@@ -122,8 +122,12 @@
 }
 
 .disabled {
-  cursor: default;
+  cursor: pointer;
   opacity: 0.85;
+
+  &:hover {
+    background: rgba($color-navy, 0.04);
+  }
 }
 
 .switchOrg {

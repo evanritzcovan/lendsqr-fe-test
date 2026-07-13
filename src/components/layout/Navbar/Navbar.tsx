@@ -11,6 +11,7 @@ import {
   IconSearch,
 } from '@/components/icons/NavIcons';
 import { Avatar } from '@/components/ui/Avatar';
+import { notifyUnavailableFeature } from '@/lib/unavailable-feature';
 import { NAVBAR_USER } from '@/lib/navigation';
 import { buildUsersUrl, mergeUsersParams } from '@/lib/users-url';
 import { parseUsersQueryParams } from '@/lib/users-query';
@@ -90,22 +91,26 @@ export function Navbar({ onMenuClick }: NavbarProps) {
       </Suspense>
 
       <div className={styles.actions}>
-        <span className={styles.docsLink} aria-disabled="true" title="Coming soon">
-          Docs
-        </span>
         <button
           type="button"
-          className={styles.iconButton}
-          aria-label="Notifications (coming soon)"
-          disabled
+          className={`${styles.docsLink} ${styles.unavailable}`}
+          onClick={() => notifyUnavailableFeature()}
+        >
+          Docs
+        </button>
+        <button
+          type="button"
+          className={`${styles.iconButton} ${styles.unavailable}`}
+          aria-label="Notifications"
+          onClick={() => notifyUnavailableFeature()}
         >
           <IconBell />
         </button>
         <button
           type="button"
-          className={styles.profile}
-          aria-label="User menu (coming soon)"
-          disabled
+          className={`${styles.profile} ${styles.unavailable}`}
+          aria-label="User menu"
+          onClick={() => notifyUnavailableFeature()}
         >
           <Avatar alt={NAVBAR_USER.avatarAlt} size="sm" />
           <span className={styles.profileName}>{NAVBAR_USER.name}</span>
