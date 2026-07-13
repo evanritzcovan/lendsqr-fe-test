@@ -14,16 +14,18 @@ export function useUserStorage(userId: string) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const loadUser = useCallback(async () => {
+  const loadUser = useCallback(async (options?: { force?: boolean }) => {
     setIsLoading(true);
     setError(null);
 
-    const cached = getCachedUserDetail(userId);
-    if (cached) {
-      const merged = mergeUserStatus(cached);
-      setUser(merged);
-      setIsLoading(false);
-      return;
+    if (!options?.force) {
+      const cached = getCachedUserDetail(userId);
+      if (cached) {
+        const merged = mergeUserStatus(cached);
+        setUser(merged);
+        setIsLoading(false);
+        return;
+      }
     }
 
     try {
@@ -48,7 +50,7 @@ export function useUserStorage(userId: string) {
   }, [loadUser]);
 
   const refresh = useCallback(() => {
-    void loadUser();
+    void loadUser({ force: true });
   }, [loadUser]);
 
   const updateUser = useCallback((next: UserDetail) => {

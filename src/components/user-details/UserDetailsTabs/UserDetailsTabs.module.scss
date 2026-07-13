@@ -47,12 +47,13 @@
   @include card;
   min-width: 0;
   max-width: 100%;
-  min-height: 560px;
+  min-height: 320px;
   padding: $space-xl $space-lg;
   border: 1px solid $color-border-light;
   overflow-x: auto;
 
   @include respond-to(md) {
+    min-height: 560px;
     padding: $space-xl $space-2xl;
   }
 }

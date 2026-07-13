@@ -2,7 +2,7 @@
 @use '../../../styles/mixins' as *;
 
 .popover {
-  width: 270px;
+  width: min(270px, calc(100vw - 32px));
   padding: $space-lg;
   border: 1px solid $color-border-light;
   border-radius: $radius-md;

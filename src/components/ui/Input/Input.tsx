@@ -3,12 +3,14 @@ import styles from './Input.module.scss';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  hideLabel?: boolean;
   error?: string;
   trailing?: ReactNode;
 }
 
 export function Input({
   label,
+  hideLabel = false,
   error,
   trailing,
   id,
@@ -20,7 +22,10 @@ export function Input({
   return (
     <div className={styles.field}>
       {label ? (
-        <label className={styles.label} htmlFor={inputId}>
+        <label
+          className={[styles.label, hideLabel ? 'sr-only' : ''].filter(Boolean).join(' ')}
+          htmlFor={inputId}
+        >
           {label}
         </label>
       ) : null}

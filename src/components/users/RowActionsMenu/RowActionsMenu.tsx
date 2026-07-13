@@ -72,13 +72,21 @@ export function RowActionsMenu({
   };
 
   const handleStatusAction = () => {
-    setUserStatusOverride(user.id, getStatusForAction(actions.statusAction));
+    setUserStatusOverride(
+      user.id,
+      getStatusForAction(actions.statusAction),
+      user.status,
+    );
     onStatusChange();
     onClose();
   };
 
   const handleListAction = () => {
-    setUserStatusOverride(user.id, getStatusForAction(actions.listAction));
+    setUserStatusOverride(
+      user.id,
+      getStatusForAction(actions.listAction),
+      user.status,
+    );
     onStatusChange();
     onClose();
   };
@@ -88,15 +96,15 @@ export function RowActionsMenu({
 
   return (
     <div className={styles.menu} ref={menuRef} role="menu">
-      <button type="button" className={styles.item} onClick={handleViewDetails}>
+      <button type="button" className={styles.item} role="menuitem" onClick={handleViewDetails}>
         <IconEye />
         <span>View Details</span>
       </button>
-      <button type="button" className={styles.item} onClick={handleListAction}>
+      <button type="button" className={styles.item} role="menuitem" onClick={handleListAction}>
         <IconUserBlock />
         <span>{getUserActionLabel(actions.listAction)}</span>
       </button>
-      <button type="button" className={styles.item} onClick={handleStatusAction}>
+      <button type="button" className={styles.item} role="menuitem" onClick={handleStatusAction}>
         <StatusIcon />
         <span>{getUserActionLabel(actions.statusAction)}</span>
       </button>

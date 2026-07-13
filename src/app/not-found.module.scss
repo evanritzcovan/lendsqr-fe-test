@@ -1,0 +1,41 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+  min-height: 100vh;
+  padding: $space-xl;
+  text-align: center;
+  background: $color-background;
+}
+
+.title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-navy;
+}
+
+.message {
+  max-width: 420px;
+  color: $color-text-secondary;
+}
+
+.link {
+  margin-top: $space-sm;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-teal;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-teal-dark;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}

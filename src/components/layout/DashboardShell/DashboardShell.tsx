@@ -18,9 +18,11 @@ export function DashboardShell({ children }: DashboardShellProps) {
         isOpen={isMobileNavOpen}
         onClose={() => setIsMobileNavOpen(false)}
       />
-      <div className={styles.main}>
+        <div className={styles.main}>
         <Navbar onMenuClick={() => setIsMobileNavOpen(true)} />
-        <div className={styles.content}>{children}</div>
+        <main id="main-content" className={styles.content}>
+          {children}
+        </main>
       </div>
     </div>
   );

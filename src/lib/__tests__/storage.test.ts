@@ -4,6 +4,7 @@ import {
   STATUS_OVERRIDES_STORAGE_KEY,
 } from '@/lib/constants';
 import {
+  applySummaryOverrides,
   getCachedUserDetail,
   mergeUserStatus,
   saveUserDetail,
@@ -79,11 +80,25 @@ describe('storage', () => {
 
   it('merges status overrides onto cached users', () => {
     saveUserDetail(mockUser);
-    setUserStatusOverride('1', 'Blacklisted');
+    setUserStatusOverride('1', 'Blacklisted', 'Active');
 
     expect(mergeUserStatus(mockUser).status).toBe('Blacklisted');
     expect(getCachedUserDetail('1')?.status).toBe('Blacklisted');
     expect(localStorage.getItem(STATUS_OVERRIDES_STORAGE_KEY)).toBeTruthy();
     expect(localStorage.getItem(USER_DETAILS_STORAGE_KEY)).toBeTruthy();
+  });
+
+  it('adjusts active user summary counts from overrides', () => {
+    setUserStatusOverride('1', 'Inactive', 'Active');
+    setUserStatusOverride('2', 'Active', 'Inactive');
+
+    const adjusted = applySummaryOverrides({
+      totalUsers: 500,
+      activeUsers: 200,
+      usersWithLoans: 100,
+      usersWithSavings: 150,
+    });
+
+    expect(adjusted.activeUsers).toBe(200);
   });
 });

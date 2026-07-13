@@ -69,6 +69,8 @@ function MobileCard({
             className={styles.menuButton}
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-label={`Actions for ${user.username}`}
+            aria-haspopup="menu"
+            aria-expanded={isMenuOpen}
           >
             <IconMoreVertical />
           </button>
@@ -221,6 +223,8 @@ export function UsersTable() {
                         )
                       }
                       aria-label={`Actions for ${user.username}`}
+                      aria-haspopup="menu"
+                      aria-expanded={openMenuUserId === user.id}
                     >
                       <IconMoreVertical />
                     </button>
@@ -289,6 +293,29 @@ export function UsersTable() {
         ) : (
           <div className={styles.emptyState}>
             <p>No users match your filters.</p>
+            {hasActiveFilters ? (
+              <button
+                type="button"
+                className={styles.clearFilters}
+                onClick={() =>
+                  updateParams(
+                    {
+                      search: undefined,
+                      organization: undefined,
+                      username: undefined,
+                      email: undefined,
+                      phoneNumber: undefined,
+                      status: undefined,
+                      dateFrom: undefined,
+                      dateTo: undefined,
+                    },
+                    { resetPage: true },
+                  )
+                }
+              >
+                Clear filters
+              </button>
+            ) : null}
           </div>
         )}
       </div>

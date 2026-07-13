@@ -7,6 +7,8 @@ import styles from './PasswordInput.module.scss';
 interface PasswordInputProps {
   name?: string;
   id?: string;
+  label?: string;
+  hideLabel?: boolean;
   placeholder?: string;
   autoComplete?: string;
   value: string;
@@ -17,6 +19,8 @@ interface PasswordInputProps {
 export function PasswordInput({
   name = 'password',
   id = 'password',
+  label = 'Password',
+  hideLabel = false,
   placeholder = 'Password',
   autoComplete = 'current-password',
   value,
@@ -29,6 +33,8 @@ export function PasswordInput({
     <Input
       id={id}
       name={name}
+      label={label}
+      hideLabel={hideLabel}
       type={isVisible ? 'text' : 'password'}
       placeholder={placeholder}
       autoComplete={autoComplete}

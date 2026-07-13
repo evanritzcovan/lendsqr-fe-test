@@ -74,13 +74,13 @@ export function UserDetailsView({ userId }: UserDetailsViewProps) {
 
   const handleListAction = () => {
     const status = getStatusForAction(actions.listAction);
-    setUserStatusOverride(user.id, status);
+    setUserStatusOverride(user.id, status, user.status);
     updateUser({ ...user, status });
   };
 
   const handleStatusAction = () => {
     const status = getStatusForAction(actions.statusAction);
-    setUserStatusOverride(user.id, status);
+    setUserStatusOverride(user.id, status, user.status);
     updateUser({ ...user, status });
   };
 

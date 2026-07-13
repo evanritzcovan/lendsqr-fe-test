@@ -116,6 +116,8 @@ export default function LoginPage() {
                 id="email"
                 name="email"
                 type="email"
+                label="Email"
+                hideLabel
                 placeholder="Email"
                 autoComplete="email"
                 value={email}
@@ -125,6 +127,7 @@ export default function LoginPage() {
 
               <div className={styles.passwordSection}>
                 <PasswordInput
+                  hideLabel
                   value={password}
                   error={fieldErrors.password}
                   onChange={handlePasswordChange}

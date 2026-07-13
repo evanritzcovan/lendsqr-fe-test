@@ -34,7 +34,7 @@ export function Button({
     .join(' ');
 
   return (
-    <button className={classes} disabled={disabled || isLoading} {...props}>
+    <button className={classes} disabled={disabled || isLoading} aria-busy={isLoading} {...props}>
       {isLoading ? <span className={styles.loadingText}>Loading...</span> : children}
     </button>
   );
