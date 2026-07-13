@@ -6,7 +6,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hideLabel?: boolean;
   error?: string;
   trailing?: ReactNode;
-  suppressHydrationWarning?: boolean;
 }
 
 export function Input({
@@ -16,7 +15,6 @@ export function Input({
   trailing,
   id,
   className,
-  suppressHydrationWarning = false,
   ...props
 }: InputProps) {
   const inputId = id ?? props.name;
@@ -31,7 +29,7 @@ export function Input({
           {label}
         </label>
       ) : null}
-      <div className={styles.control} suppressHydrationWarning={suppressHydrationWarning}>
+      <div className={styles.control}>
         <input
           id={inputId}
           className={[styles.input, error ? styles.hasError : '', className]
@@ -39,7 +37,6 @@ export function Input({
             .join(' ')}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${inputId}-error` : undefined}
-          suppressHydrationWarning={suppressHydrationWarning}
           {...props}
         />
         {trailing ? <div className={styles.trailing}>{trailing}</div> : null}
