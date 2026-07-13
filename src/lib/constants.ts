@@ -2,7 +2,7 @@ export const APP_NAME = 'lendsqr';
 
 export const TEST_CREDENTIALS = {
   email: 'test@example.com',
-  password: 'LENDsqr3215?',
+  password: 'password123',
 } as const;
 
 export const AUTH_SESSION_KEY = 'lendsqr_auth_session';
