@@ -15,7 +15,7 @@
 .brandPanel {
   display: flex;
   flex-direction: column;
-  padding: $space-2xl $space-3xl;
+  padding: $space-2xl $space-3xl $space-3xl;
   background: $color-background;
 
   @include respond-below(lg) {
@@ -24,17 +24,22 @@
 }
 
 .logo {
-  margin-bottom: $space-3xl;
+  margin-bottom: $space-2xl;
 }
 
 .illustrationWrap {
   flex: 1;
   @include flex-center;
+  width: 100%;
+  min-height: 0;
 }
 
 .illustration {
-  width: min(100%, 520px);
+  width: min(100%, 720px);
   height: auto;
+  object-fit: contain;
+  // SVG embeds a white raster background; multiply blends it into the panel.
+  mix-blend-mode: multiply;
 }
 
 .formPanel {

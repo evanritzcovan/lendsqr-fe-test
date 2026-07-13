@@ -89,8 +89,8 @@ export default function LoginPage() {
             <Image
               src="/login-illustration.svg"
               alt=""
-              width={560}
-              height={560}
+              width={600}
+              height={338}
               className={styles.illustration}
               priority
             />
