@@ -151,6 +151,7 @@ export function UsersTable() {
         <button
           type="button"
           className={styles.filterButton}
+          data-filter-trigger
           onClick={() => setIsFilterOpen(true)}
           aria-expanded={isFilterOpen}
           aria-haspopup="dialog"
@@ -171,6 +172,7 @@ export function UsersTable() {
                     <button
                       type="button"
                       className={styles.headerFilter}
+                      data-filter-trigger
                       onClick={() => setIsFilterOpen(true)}
                       aria-label={`Filter by ${column}`}
                     >

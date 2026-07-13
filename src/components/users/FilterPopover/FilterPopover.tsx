@@ -26,12 +26,17 @@ function FilterPopoverForm({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        panelRef.current &&
-        !panelRef.current.contains(event.target as Node)
-      ) {
-        onClose();
+      const target = event.target as Node;
+
+      if (panelRef.current?.contains(target)) {
+        return;
       }
+
+      if ((target as Element).closest?.('[data-filter-trigger]')) {
+        return;
+      }
+
+      onClose();
     };
 
     const handleEscape = (event: KeyboardEvent) => {

@@ -24,10 +24,6 @@ function isActive(pathname: string, href?: string) {
     return false;
   }
 
-  if (href === '/dashboard') {
-    return pathname === '/dashboard' || pathname === '/users';
-  }
-
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 

@@ -1,6 +1,9 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
+$table-header-height: 76px;
+$mobile-filter-bar-height: 52px;
+
 .tableSection {
   @include card;
   position: relative;
@@ -8,16 +11,17 @@
 }
 
 .filterPanel {
-  display: flex;
-  justify-content: flex-end;
-  padding: $space-md $space-lg 0;
+  position: absolute;
+  z-index: $z-dropdown;
 
   @include respond-below(lg) {
-    position: absolute;
-    top: $space-md;
+    top: $mobile-filter-bar-height;
     right: $space-lg;
-    z-index: $z-dropdown;
-    padding: 0;
+  }
+
+  @include respond-to(lg) {
+    top: $table-header-height;
+    left: $space-lg;
   }
 }
 
