@@ -1,0 +1,61 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+  padding-bottom: $space-xl;
+
+  & + & {
+    padding-top: $space-xl;
+    border-top: 1px solid $color-border-light;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.title {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-navy;
+}
+
+.grid {
+  display: grid;
+  gap: $space-xl $space-xl;
+  margin: 0;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to(xl) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  min-width: 0;
+
+  dt {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+  }
+
+  dd {
+    margin: 0;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    overflow-wrap: break-word;
+  }
+}

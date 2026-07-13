@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
+  buildUserDetailsUrl,
   buildUsersUrl,
   filtersToQueryParams,
+  getUsersBackUrl,
   mergeUsersParams,
   serializeUsersParams,
 } from '@/lib/users-url';
@@ -20,6 +22,16 @@ describe('users-url', () => {
 
   it('builds a users url', () => {
     expect(buildUsersUrl({ search: 'grace' })).toBe('/users?search=grace');
+  });
+
+  it('builds user details and back urls', () => {
+    expect(buildUserDetailsUrl('42', 'page=2&search=grace')).toBe(
+      '/users/42?page=2&search=grace',
+    );
+    expect(getUsersBackUrl('page=2&search=grace')).toBe(
+      '/users?page=2&search=grace',
+    );
+    expect(getUsersBackUrl('')).toBe('/users');
   });
 
   it('resets page when filters change', () => {

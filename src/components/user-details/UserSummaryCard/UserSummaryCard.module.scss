@@ -1,0 +1,86 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.profileRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-xl;
+  min-width: 0;
+  max-width: 100%;
+  padding: $space-xl $space-lg;
+
+  @include respond-to(md) {
+    flex-wrap: nowrap;
+    padding: $space-xl $space-2xl;
+  }
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  min-width: 0;
+}
+
+.name {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-medium;
+  color: $color-navy;
+}
+
+.userId {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.divider {
+  display: none;
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 1px;
+  min-height: 72px;
+  background: $color-border-light;
+
+  @include respond-to(md) {
+    display: block;
+  }
+}
+
+.tierBlock,
+.accountBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  min-width: 0;
+}
+
+.blockLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+.stars {
+  display: flex;
+  gap: $space-xs;
+  font-size: $font-size-lg;
+}
+
+.starFilled {
+  color: #e9b200;
+}
+
+.starEmpty {
+  color: $color-border;
+}
+
+.balance {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-navy;
+}
+
+.account {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}

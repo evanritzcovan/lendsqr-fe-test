@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { IconFilter, IconMoreVertical } from '@/components/icons/NavIcons';
 import { Badge } from '@/components/ui/Badge';
 import { ErrorBanner } from '@/components/ui/ErrorBanner';
@@ -14,6 +15,7 @@ import { formatUserDate } from '@/lib/format';
 import {
   filtersToQueryParams,
   queryParamsToFilters,
+  buildUserDetailsUrl,
 } from '@/lib/users-url';
 import type { User } from '@/types/user';
 import styles from './UsersTable.module.scss';
@@ -45,9 +47,11 @@ function TableSkeleton() {
 
 function MobileCard({
   user,
+  queryString,
   onStatusChange,
 }: {
   user: User;
+  queryString: string;
   onStatusChange: () => void;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,7 +83,7 @@ function MobileCard({
       <div className={styles.mobileDetails}>
         <p>
           <span>Email</span>
-          <Link href={`/users/${user.id}`}>{user.email}</Link>
+          <Link href={buildUserDetailsUrl(user.id, queryString)}>{user.email}</Link>
         </p>
         <p>
           <span>Phone</span>
@@ -101,6 +105,8 @@ function MobileCard({
 export function UsersTable() {
   const { response, isLoading, error, params, updateParams, refresh } =
     useUsers();
+  const searchParams = useSearchParams();
+  const queryString = searchParams.toString();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [openMenuUserId, setOpenMenuUserId] = useState<string | null>(null);
 
@@ -193,7 +199,10 @@ export function UsersTable() {
                   <td>{user.organization}</td>
                   <td>{user.username}</td>
                   <td>
-                    <Link className={styles.emailLink} href={`/users/${user.id}`}>
+                    <Link
+                      className={styles.emailLink}
+                      href={buildUserDetailsUrl(user.id, queryString)}
+                    >
                       {user.email}
                     </Link>
                   </td>
@@ -270,7 +279,12 @@ export function UsersTable() {
           ))
         ) : response?.data.length ? (
           response.data.map((user) => (
-            <MobileCard key={user.id} user={user} onStatusChange={refresh} />
+            <MobileCard
+              key={user.id}
+              user={user}
+              queryString={queryString}
+              onStatusChange={refresh}
+            />
           ))
         ) : (
           <div className={styles.emptyState}>

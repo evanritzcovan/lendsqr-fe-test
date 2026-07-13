@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   IconEye,
   IconUserActivate,
@@ -14,6 +14,7 @@ import {
   getUserActionLabel,
   getUserRowActions,
 } from '@/lib/user-actions';
+import { buildUserDetailsUrl } from '@/lib/users-url';
 import type { User } from '@/types/user';
 import styles from './RowActionsMenu.module.scss';
 
@@ -31,6 +32,7 @@ export function RowActionsMenu({
   onStatusChange,
 }: RowActionsMenuProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const menuRef = useRef<HTMLDivElement>(null);
   const actions = getUserRowActions(user.status);
 
@@ -65,7 +67,7 @@ export function RowActionsMenu({
   }
 
   const handleViewDetails = () => {
-    router.push(`/users/${user.id}`);
+    router.push(buildUserDetailsUrl(user.id, searchParams.toString()));
     onClose();
   };
 

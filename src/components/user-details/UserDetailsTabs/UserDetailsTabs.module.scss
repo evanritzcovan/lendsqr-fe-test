@@ -1,0 +1,63 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.topCard {
+  @include card;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid $color-border-light;
+}
+
+.tabList {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.tab,
+.tabActive {
+  @include button-reset;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: $space-lg $space-sm;
+  border-bottom: 2px solid transparent;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.tabActive {
+  border-bottom-color: $color-teal;
+  font-weight: $font-weight-semibold;
+  color: $color-teal;
+}
+
+.bottomCard {
+  @include card;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 560px;
+  padding: $space-xl $space-lg;
+  border: 1px solid $color-border-light;
+  overflow-x: auto;
+
+  @include respond-to(md) {
+    padding: $space-xl $space-2xl;
+  }
+}
+
+.emptyState {
+  color: $color-text-secondary;
+  text-align: center;
+}

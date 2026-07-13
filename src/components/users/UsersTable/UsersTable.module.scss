@@ -81,10 +81,10 @@ $mobile-filter-bar-height: 52px;
 
 .table th {
   font-size: $font-size-xs;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-semibold;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $color-text-muted;
+  color: $color-text-secondary;
   background: rgba($color-background, 0.6);
   white-space: nowrap;
 }
@@ -122,13 +122,14 @@ $mobile-filter-bar-height: 52px;
   width: 28px;
   height: 28px;
   min-width: 28px;
-  color: $color-text-muted;
+  color: $color-text-secondary;
 
   svg {
     flex-shrink: 0;
     width: 20px;
     height: 20px;
     max-width: none;
+    stroke-width: 2;
   }
 
   &:hover {

@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as *;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.guarantorEntry {
+  padding-top: $space-xl;
+  border-top: 1px solid $color-border-light;
+}

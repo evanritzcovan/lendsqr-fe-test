@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 html,
 body {
   margin: 0;
@@ -16,6 +20,7 @@ body {
 
 body {
   background: $color-background;
+  overflow-x: clip;
 }
 
 img,

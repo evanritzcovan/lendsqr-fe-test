@@ -1,0 +1,69 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  width: fit-content;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-navy;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+}
+
+.title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-navy;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+}
+
+.summarySkeleton {
+  @include card;
+  display: flex;
+  gap: $space-lg;
+  padding: $space-xl;
+  border: 1px solid $color-border-light;
+}
+
+.summaryAvatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.summaryContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $space-sm;
+}

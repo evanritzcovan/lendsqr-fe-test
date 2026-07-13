@@ -38,6 +38,14 @@ export function buildUsersUrl(params: UsersQueryParams): string {
   return query ? `/users?${query}` : '/users';
 }
 
+export function getUsersBackUrl(queryString: string): string {
+  return queryString ? `/users?${queryString}` : '/users';
+}
+
+export function buildUserDetailsUrl(id: string, queryString?: string): string {
+  return queryString ? `/users/${id}?${queryString}` : `/users/${id}`;
+}
+
 export function mergeUsersParams(
   current: UsersQueryParams,
   updates: Partial<UsersQueryParams>,
