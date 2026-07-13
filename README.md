@@ -40,11 +40,6 @@ Open [http://localhost:3000](http://localhost:3000).
 | `/users` | Users (dashboard + table) |
 | `/users/[id]` | User details |
 
-## Test credentials
-
-- Email: `test@example.com`
-- Password: `LENDsqr3215?`
-
 ## Assets
 
 | File | Description |
@@ -55,7 +50,3 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Deploy
 
 Target: `https://evan-ritzcovan-lendsqr-fe-test.vercel.app`
-
-## Project spec
-
-See [PROJECT_SPEC.md](./PROJECT_SPEC.md) for full requirements and phased plan.
