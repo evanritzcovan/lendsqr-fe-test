@@ -90,18 +90,23 @@ export function Navbar({ onMenuClick }: NavbarProps) {
       </Suspense>
 
       <div className={styles.actions}>
-        <a href="#" className={styles.docsLink} onClick={(e) => e.preventDefault()}>
+        <span className={styles.docsLink} aria-disabled="true" title="Coming soon">
           Docs
-        </a>
+        </span>
         <button
           type="button"
           className={styles.iconButton}
-          aria-label="Notifications"
+          aria-label="Notifications (coming soon)"
           disabled
         >
           <IconBell />
         </button>
-        <button type="button" className={styles.profile} aria-label="User menu" disabled>
+        <button
+          type="button"
+          className={styles.profile}
+          aria-label="User menu (coming soon)"
+          disabled
+        >
           <Avatar alt={NAVBAR_USER.avatarAlt} size="sm" />
           <span className={styles.profileName}>{NAVBAR_USER.name}</span>
           <span className={styles.chevron}>

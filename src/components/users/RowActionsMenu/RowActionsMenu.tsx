@@ -41,6 +41,11 @@ export function RowActionsMenu({
       return;
     }
 
+    const firstItem = menuRef.current?.querySelector<HTMLButtonElement>(
+      '[role="menuitem"]',
+    );
+    firstItem?.focus();
+
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         onClose();

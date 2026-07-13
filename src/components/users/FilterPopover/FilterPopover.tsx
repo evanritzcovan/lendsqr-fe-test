@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { ORGANIZATIONS, USER_STATUSES } from '@/lib/constants';
@@ -23,6 +23,15 @@ function FilterPopoverForm({
 }: Omit<FilterPopoverProps, 'isOpen'>) {
   const [values, setValues] = useState(initialValues);
   const panelRef = useRef<HTMLDivElement>(null);
+  const organizationId = useId();
+  const statusId = useId();
+
+  useLayoutEffect(() => {
+    const firstField = panelRef.current?.querySelector<HTMLElement>(
+      'select, input, button',
+    );
+    firstField?.focus();
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,11 +85,18 @@ function FilterPopoverForm({
   };
 
   return (
-    <div className={styles.popover} ref={panelRef} role="dialog" aria-label="Filter users">
+    <div
+      className={styles.popover}
+      ref={panelRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Filter users"
+    >
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.field}>
+        <label className={styles.field} htmlFor={organizationId}>
           <span className={styles.label}>Organization</span>
           <select
+            id={organizationId}
             className={styles.select}
             value={values.organization}
             onChange={(event) =>
@@ -152,9 +168,10 @@ function FilterPopoverForm({
           }
         />
 
-        <label className={styles.field}>
+        <label className={styles.field} htmlFor={statusId}>
           <span className={styles.label}>Status</span>
           <select
+            id={statusId}
             className={styles.select}
             value={values.status}
             onChange={(event) =>

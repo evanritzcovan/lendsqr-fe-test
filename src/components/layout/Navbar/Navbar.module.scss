@@ -124,7 +124,12 @@
   color: $color-text-secondary;
   text-decoration: none;
 
-  &:hover {
+  &[aria-disabled='true'] {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  &:hover:not([aria-disabled='true']) {
     color: $color-navy;
   }
 }
